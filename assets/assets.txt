@@ -1,0 +1,111 @@
+SnawTest/cams/cams_base.png
+SnawTest/cams/cams_buttons.png
+SnawTest/cams/cams_buttons_1.png
+SnawTest/cams/cams_buttons_2.png
+SnawTest/cams/cams_buttons_3.png
+SnawTest/cams/cams_buttons_4.png
+SnawTest/cams/cams_buttons_5.png
+SnawTest/cams/cams_buttons_6.png
+SnawTest/cams/cams_buttons_7.png
+SnawTest/cams/cams_buttons_o.png
+SnawTest/cams/cams_buttons_office_view.png
+SnawTest/cams/out/cams_base.png
+SnawTest/cams/out/cams_buttons.png
+SnawTest/cams/out/cams_buttons_1.png
+SnawTest/cams/out/cams_buttons_2.png
+SnawTest/cams/out/cams_buttons_3.png
+SnawTest/cams/out/cams_buttons_4.png
+SnawTest/cams/out/cams_buttons_5.png
+SnawTest/cams/out/cams_buttons_6.png
+SnawTest/cams/out/cams_buttons_7.png
+SnawTest/cams/out/cams_buttons_o.png
+SnawTest/cams/out/cams_buttons_office_view.png
+SnawTest/camviews/cam1.png
+SnawTest/camviews/cam2.png
+SnawTest/camviews/cam3.png
+SnawTest/camviews/cam4.png
+SnawTest/camviews/cam5.png
+SnawTest/camviews/cam6.png
+SnawTest/camviews/cam7.png
+SnawTest/camviews/camt-1.png
+SnawTest/camviews/camt-2.png
+SnawTest/camviews/camt-3.png
+SnawTest/camviews/camt-4.png
+SnawTest/camviews/camt-5.png
+SnawTest/camviews/camt-6.png
+SnawTest/camviews/camt-7.png
+SnawTest/camviews/camt-8.png
+SnawTest/camviews/New folder/cam1.png
+SnawTest/camviews/New folder/cam2.png
+SnawTest/camviews/New folder/cam3.png
+SnawTest/camviews/New folder/cam4.png
+SnawTest/camviews/New folder/cam5.png
+SnawTest/camviews/New folder/cam6.png
+SnawTest/camviews/New folder/cam7.png
+SnawTest/camviews/New folder/out.png
+SnawTest/camviews/New folder/overlay.png
+SnawTest/camviews/New folder/overlay_buttons.png
+SnawTest/camviews/overlay.png
+SnawTest/camviews/overlay_buttons.png
+SnawTest/camviews/overlay_clear.png
+SnawTest/characters/jimmy/attacking_badly.png
+SnawTest/characters/jimmy/at_cam_1.png
+SnawTest/characters/jimmy/at_cam_2.png
+SnawTest/characters/jimmy/at_cam_3.png
+SnawTest/characters/jimmy/at_cam_4.png
+SnawTest/characters/jimmy/at_left_door.png
+SnawTest/characters/oozo/attacking_badly.png
+SnawTest/characters/oozo/at_cam_1.png
+SnawTest/characters/oozo/at_cam_5.png
+SnawTest/characters/oozo/at_cam_6.png
+SnawTest/characters/oozo/at_right_door.png
+SnawTest/menu/lose_screen.png
+SnawTest/menu/lose_screen_button.png
+SnawTest/menu/main menu/main menu key.png
+SnawTest/menu/main menu/main menu.png
+SnawTest/menu/main menu/menu_button_1.png
+SnawTest/menu/main menu/menu_button_2.png
+SnawTest/menu/main menu/menu_button_3.png
+SnawTest/menu/main menu/menu_button_4.png
+SnawTest/menu/main menu/menu_button_5.png
+SnawTest/menu/main menu/menu_button_6.png
+SnawTest/menu/win_screen.png
+SnawTest/office/door_left.png
+SnawTest/office/door_right.png
+SnawTest/office/left_door_base.png
+SnawTest/office/left_door_closed.png
+SnawTest/office/left_door_lit.png
+SnawTest/office/light_left.png
+SnawTest/office/light_right.png
+SnawTest/office/mainView.png
+SnawTest/office/mainViewLeftClose.png
+SnawTest/office/main_key.png
+SnawTest/office/overlay_cams.png
+SnawTest/office/overlay_doorswitch_left.png
+SnawTest/office/overlay_doorswitch_right.png
+SnawTest/office/overlay_door_left.png
+SnawTest/office/overlay_door_right.png
+SnawTest/office/overlay_light_left.png
+SnawTest/office/overlay_light_right.png
+SnawTest/office/right_door_base.png
+SnawTest/office/right_door_closed.png
+SnawTest/office/right_door_lit.png
+SnawTest/overlays/debug_mode.png
+SnawTest/overlays/power_bar_blank.png
+SnawTest/overlays/power_bar_down_1.png
+SnawTest/overlays/power_bar_down_2.png
+SnawTest/overlays/power_bar_down_3.png
+SnawTest/overlays/power_bar_down_4.png
+SnawTest/overlays/power_bar_down_5.png
+SnawTest/overlays/power_bar_down_6.png
+SnawTest/progressTest/prog_1.png
+SnawTest/progressTest/prog_2.png
+SnawTest/progressTest/prog_3.png
+SnawTest/progressTest/prog_4.png
+SnawTest/progressTest/prog_5.png
+SnawTest/progressTest/prog_6.png
+SnawTest/progressTest/prog_7.png
+SnawTest/progressTest2/prog_1.png
+SnawTest/progressTest2/prog_2.png
+SnawTest/progressTest2/prog_3.png
+SnawTest/wholeMenuPlacer.png

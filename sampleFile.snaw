@@ -1,0 +1,924 @@
+[BEGIN FILE]
+	[TARGET FPS]60
+	[BEGIN MENU DATA]
+		[BEGIN RENDERING LEVELS]
+			[LEVEL]Menu{Default}
+		[END RENDERING LEVELS]
+		[BEGIN MENUS]
+			[BEGIN MENU]
+				[ID]Main Menu
+				[IS START MENU]true
+				[BEGIN TEXTURE BANKS]
+					[BEGIN TEXTURE BANK]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\menu\main menu\main menu.png
+						[END TEXTURE]
+					[END TEXTURE BANK]
+				[END TEXTURE BANKS]
+				[BEGIN BUTTON OVERLAYS]
+					[BEGIN BUTTON OVERLAY]
+						[BUTTON]Main Menu Buttons
+						[RENDERING LEVEL]Menu
+						[PLACEMENT TEXTURE]SnawTest\wholeMenuPlacer.png
+					[END BUTTON OVERLAY]
+				[END BUTTON OVERLAYS]
+			[END MENU]
+			[BEGIN MENU]
+				[ID]Won
+				[BEGIN TEXTURE BANKS]
+					[BEGIN TEXTURE BANK]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\menu\win_screen.png
+						[END TEXTURE]
+					[END TEXTURE BANK]
+				[END TEXTURE BANKS]
+				[BEGIN BUTTON OVERLAYS]
+					[BEGIN BUTTON OVERLAY]
+						[BUTTON]Return To Main Menu Button
+						[PLACEMENT TEXTURE]SnawTest\wholeMenuPlacer.png
+					[END BUTTON OVERLAY]
+				[END BUTTON OVERLAYS]
+			[END MENU]
+			[BEGIN MENU]
+				[ID]Lost
+				[BEGIN TEXTURE BANKS]
+					[BEGIN TEXTURE BANK]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\menu\lose_screen.png
+						[END TEXTURE]
+					[END TEXTURE BANK]
+				[END TEXTURE BANKS]
+				[BEGIN BUTTON OVERLAYS]
+					[BEGIN BUTTON OVERLAY]
+						[BUTTON]Return To Main Menu Button
+						[PLACEMENT TEXTURE]SnawTest\wholeMenuPlacer.png
+					[END BUTTON OVERLAY]
+				[END BUTTON OVERLAYS]
+			[END MENU]
+		[END MENUS]
+	[END MENU DATA]
+	[BEGIN LEVELS]
+		[BEGIN LEVEL]
+			[ID]Level 1
+			[MAP]Main Map
+			[BEGIN SETUP BEHAVIORS]
+				[BEHAVIOR]SET STATE{(Map:Main Map:Current Player Room)=Office}
+				[BEHAVIOR]SET STATE{(Map:Main Map:Current Viewing Room)=Office}
+				[BEHAVIOR]SET ROOM{Office}
+				[BEHAVIOR]SET STATE{(Room:Office:Debug Mode)=Overlay}
+				[BEHAVIOR]SET INT STATE{(Map:Main Map:Power)=1000}
+				[BEHAVIOR]SET INT STATE{(Character:Jimmy:Move Chance)=50}
+			[END SETUP BEHAVIORS]
+			[BEGIN ONGOING BEHAVIORS]
+			[END ONGOING BEHAVIORS]
+		[END LEVEL]
+		[BEGIN LEVEL]
+			[ID]Level 2
+			[MAP]Main Map
+			[BEGIN SETUP BEHAVIORS]
+				[BEHAVIOR]SET STATE{(Map:Main Map:Current Player Room)=Office}
+				[BEHAVIOR]SET STATE{(Map:Main Map:Current Viewing Room)=Office}
+				[BEHAVIOR]SET ROOM{Office}
+				[BEHAVIOR]SET STATE{Room:Office:Debug Mode=Overlay}
+				[BEHAVIOR]SET INT STATE{(Map:Main Map:Power)=1000}
+				[BEHAVIOR]SET INT STATE{(Map:Main Map:Total Time)=0}
+				[BEHAVIOR]SET INT STATE{(Character:Jimmy:Move Chance)=75}
+			[END SETUP BEHAVIORS]
+			[BEGIN ONGOING BEHAVIORS]
+				%[BEHAVIOR]PER TIME{1}->SUBTRACT FROM STATE{Map:Main Map:Power=500}
+				[BEHAVIOR]PER TIME{100}->ADD TO STATE{(Map:Main Map:Total Time)+100}
+				[BEHAVIOR]PER TIME{1000}->CHECK STATE{(Room:Left Door:Lit)}->SUBTRACT FROM STATE{(Map:Main Map:Power)-10}
+				[BEHAVIOR]PER TIME{1000}->CHECK STATE{(Room:Right Door:Lit)}->SUBTRACT FROM STATE{(Map:Main Map:Power)-10}
+				[BEHAVIOR]PER TIME{1000}->CHECK STATE{(Room:Left Door:Closed)}->SUBTRACT FROM STATE{(Map:Main Map:Power)-10}
+				[BEHAVIOR]PER TIME{1000}->CHECK STATE{(Room:Right Door:Closed)}->SUBTRACT FROM STATE{(Map:Main Map:Power)-10}
+				[BEHAVIOR]PER TIME{1000}->SUBTRACT FROM STATE{(Map:Main Map:Power)-10}
+				[BEHAVIOR]ANY CHARACTERS ATTACKING->IMMEDIATELY LOSE
+				[BEHAVIOR]CHECK INT STATE{(Map:Main Map:Power)<=0}->IMMEDIATELY LOSE
+				[BEHAVIOR]CHECK INT STATE{(Map:Main Map:Total Time)>=10000}->IMMEDIATELY WIN
+			[END ONGOING BEHAVIORS]
+		[END LEVEL]
+		[BEGIN LEVEL]
+			[ID]Level 3
+			[MAP]Main Map
+			[BEGIN SETUP BEHAVIORS]
+				[BEHAVIOR]SET STATE{(Map:Main Map:Current Player Room)=Office}
+				[BEHAVIOR]SET STATE{(Map:Main Map:Current Viewing Room)=Office}
+				[BEHAVIOR]SET ROOM{Office}
+				[BEHAVIOR]SET STATE{Room:Office:Debug Mode=Overlay}
+				[BEHAVIOR]SET INT STATE{(Map:Main Map:Power)=1000}
+				[BEHAVIOR]SET INT STATE{(Map:Main Map:Total Time)=0}
+				[BEHAVIOR]SET INT STATE{(Character:Jimmy:Move Chance)=100}
+			[END SETUP BEHAVIORS]
+			[BEGIN ONGOING BEHAVIORS]
+				[BEHAVIOR]PER TIME{1000}->CHECK STATE{(Room:Left Door:Lit)}->SUBTRACT FROM STATE{(Map:Main Map:Power)-20}
+				[BEHAVIOR]PER TIME{1000}->CHECK STATE{(Room:Right Door:Lit)}->SUBTRACT FROM STATE{(Map:Main Map:Power)-30}
+				[BEHAVIOR]PER TIME{1000}->CHECK STATE{(Room:Left Door:Closed)}->SUBTRACT FROM STATE{(Map:Main Map:Power)-20}
+				[BEHAVIOR]PER TIME{1000}->CHECK STATE{(Room:Right Door:Closed)}->SUBTRACT FROM STATE{(Map:Main Map:Power)-30}
+				[BEHAVIOR]PER TIME{1000}->SUBTRACT FROM STATE{(Map:Main Map:Power)-10}
+				[BEHAVIOR]ANY CHARACTERS ATTACKING->IMMEDIATELY LOSE
+				[BEHAVIOR]CHECK INT STATE{(Map:Main Map:Power)<=0}->IMMEDIATELY LOSE
+				[BEHAVIOR]PER TIME{100}->ADD TO STATE{(Map:Main Map:Total Time)+100}
+				[BEHAVIOR]CHECK INT STATE{(Map:Main Map:Total Time)>=10000}->IMMEDIATELY WIN
+			[END ONGOING BEHAVIORS]
+		[END LEVEL]
+		[BEGIN LEVEL]
+			[ID]Level 4
+			[MAP]Main Map
+			[BEGIN SETUP BEHAVIORS]
+				[BEHAVIOR]SET STATE{(Map:Main Map:Current Player Room)=Office}
+				[BEHAVIOR]SET STATE{(Map:Main Map:Current Viewing Room)=Office}
+				[BEHAVIOR]SET ROOM{Office}
+				[BEHAVIOR]SET STATE{Room:Office:Debug Mode=Overlay}
+				[BEHAVIOR]SET INT STATE{(Map:Main Map:Power)=1000}
+				[BEHAVIOR]SET INT STATE{(Map:Main Map:Total Time)=0}
+				[BEHAVIOR]SET STATE{Map:Main Map:AutoResolve=lose}
+				[BEHAVIOR]SET INT STATE{(Character:Jimmy:Move Chance)=100}
+			[END SETUP BEHAVIORS]
+			[BEGIN ONGOING BEHAVIORS]
+				[BEHAVIOR]CHECK STATE{(Map:Main Map:AutoResolve)=lose}->IMMEDIATELY LOSE
+			[END ONGOING BEHAVIORS]
+		[END LEVEL]
+		[BEGIN LEVEL]
+			[ID]Level 5
+			[MAP]Main Map
+			[BEGIN SETUP BEHAVIORS]
+				[BEHAVIOR]SET STATE{(Map:Main Map:Current Player Room)=Office}
+				[BEHAVIOR]SET STATE{(Map:Main Map:Current Viewing Room)=Office}
+				[BEHAVIOR]SET ROOM{Office}
+				[BEHAVIOR]SET STATE{Room:Office:Debug Mode=Overlay}
+				[BEHAVIOR]SET INT STATE{(Map:Main Map:Power)=1000}
+				[BEHAVIOR]SET INT STATE{(Map:Main Map:Total Time)=0}
+				[BEHAVIOR]SET STATE{Map:Main Map:AutoResolve=win}
+				[BEHAVIOR]SET INT STATE{(Character:Jimmy:Move Chance)=100}
+			[END SETUP BEHAVIORS]
+			[BEGIN ONGOING BEHAVIORS]
+				[BEHAVIOR]CHECK STATE{(Map:Main Map:AutoResolve)=win}->IMMEDIATELY WIN
+			[END ONGOING BEHAVIORS]
+		[END LEVEL]
+	[END LEVELS]
+	[BEGIN GAME MAPS]
+		[BEGIN GAME MAP]
+			[ID]Main Map
+			[BEGIN STATE]
+				[CONDITION STRING]Test Condition Dog{dog}
+				[CONDITION STRING]Start Room{Office}
+			[END STATE]
+			[BEGIN EVENTS]
+			[END EVENTS]
+			[BEGIN RENDERING LEVELS]
+				[LEVEL]Background
+				[LEVEL]Buttons{Default}
+				[LEVEL]Jimmy
+				[LEVEL]Oozo
+				[LEVEL]Foreground
+				[LEVEL]Max Debug
+			[END RENDERING LEVELS]
+			[BEGIN CHARACTERS]
+				[BEGIN CHARACTER]
+					[ID]Billy
+					[BEGIN STATE]
+						[CONDITION STRING]In Room{Office}
+						[CONDITION BOOL]Disabled{false}
+						[CONDITION NUMBER]x offset{30}
+					[END STATE]
+					[BEGIN BEHAVIORS]
+						[BEHAVIOR]END TURN IF{Disabled}
+						[BEHAVIOR]PER TIME{10}->WHILE KEY PRESSED{Left}->CALC AND SET{(Character:Billy:x offset)-1}
+						[BEHAVIOR]PER TIME{10}->WHILE KEY PRESSED{Right}->CALC AND SET{(Character:Billy:x offset)+1}
+						[BEHAVIOR]PER TIME{10}->WHILE KEY PRESSED{Down}->CALC AND SET{(Character:Billy:y offset)-1}
+						[BEHAVIOR]PER TIME{10}->WHILE KEY PRESSED{Up}->CALC AND SET{(Character:Billy:y offset)+1}
+					[END BEHAVIORS]
+					[BEGIN TEXTURE BANKS]
+						[BEGIN TEXTURE BANK]
+							[RENDERING LEVEL]Jimmy
+							[BEGIN TEXTURE]
+								[PLACEMENT TEXTURE]SnawTest\characters\little billy\placer.png
+								[CLICK TEXTURE]SnawTest\characters\little billy\placer.png
+								[BEGIN CLICK BEHAVIORS]
+									[BEHAVIOR]TOGGLE ROOM STATE{Left Door:Closed}
+								[END CLICK BEHAVIORS]
+								[TEXTURE IMAGE]SnawTest\characters\little billy\billy cropped.png
+								[BEGIN BANKED TEXTURE BEHAVIORS]
+									[BEHAVIOR]CHECK STATE{(Character:Billy:In Room)=Office}
+								[END BANKED TEXTURE BEHAVIORS]
+							[END TEXTURE]
+						[END TEXTURE BANK]
+					[END TEXTURE BANKS]
+				[END CHARACTER]
+				[BEGIN CHARACTER]
+					[ID]Jimmy
+					[BEGIN STATE]
+						[CONDITION STRING]In Room{Cam 1}
+						[CONDITION BOOL]Disabled{false}
+					[END STATE]
+					[BEGIN BEHAVIORS]
+						[BEHAVIOR]END TURN IF{Disabled}
+						[BEHAVIOR]TRIES TO MOVE EVERY{1000}
+						[BEHAVIOR]MOVE CHANCE{(Character:Jimmy:Move Chance)}
+						[BEHAVIOR]MOVES IN A LINE{Cam 1,Cam 2,Cam 3,Cam 4,Left Door,Office}
+						[BEHAVIOR]MOVE BLOCKED BY ROOM STATE{Closed}
+						[BEHAVIOR]MOVE SUCCEEDS IF NOT BLOCKED
+						[BEHAVIOR]RETURNS TO ROOM WHEN BLOCKED{Cam 1}
+						[BEHAVIOR]ATTACKS PLAYER WHEN IN{Office}
+					[END BEHAVIORS]
+					[BEGIN TEXTURE BANKS]
+						[BEGIN TEXTURE BANK]
+							[RENDERING LEVEL]Jimmy
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\characters\jimmy\at_cam_1.png
+								[BEGIN BANKED TEXTURE BEHAVIORS]
+									[BEHAVIOR]CHECK STATE{(Character:Jimmy:In Room)=Cam 1}
+								[END BANKED TEXTURE BEHAVIORS]
+							[END TEXTURE]
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\characters\jimmy\at_cam_2.png
+								[BEGIN BANKED TEXTURE BEHAVIORS]
+									[BEHAVIOR]CHECK STATE{(Character:Jimmy:In Room)=Cam 2}
+								[END BANKED TEXTURE BEHAVIORS]
+							[END TEXTURE]
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\characters\jimmy\at_cam_3.png
+								[BEGIN BANKED TEXTURE BEHAVIORS]
+									[BEHAVIOR]CHECK STATE{(Character:Jimmy:In Room)=Cam 3}
+								[END BANKED TEXTURE BEHAVIORS]
+							[END TEXTURE]
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\characters\jimmy\at_cam_4.png
+								[BEGIN BANKED TEXTURE BEHAVIORS]
+									[BEHAVIOR]CHECK STATE{(Character:Jimmy:In Room)=Cam 4}
+								[END BANKED TEXTURE BEHAVIORS]
+							[END TEXTURE]
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\characters\jimmy\at_left_door.png
+								[CLICK TEXTURE]SnawTest\characters\jimmy\at_left_door.png
+								[BEGIN CLICK BEHAVIORS]
+									[BEHAVIOR]TOGGLE ROOM STATE{Left Door:Closed}
+								[END CLICK BEHAVIORS]
+								[BEGIN BANKED TEXTURE BEHAVIORS]
+									[BEHAVIOR]CHECK STATE{(Character:Jimmy:In Room)=Left Door}
+									[BEHAVIOR]CHECK STATE{(Room:Left Door:Lit)}
+								[END BANKED TEXTURE BEHAVIORS]
+							[END TEXTURE]
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\characters\jimmy\attacking_badly.png
+								[BEGIN BANKED TEXTURE BEHAVIORS]
+									[BEHAVIOR]CHECK STATE{(Character:Jimmy:In Room)=Office}
+								[END BANKED TEXTURE BEHAVIORS]
+							[END TEXTURE]
+						[END TEXTURE BANK]
+					[END TEXTURE BANKS]
+				[END CHARACTER]
+				[BEGIN CHARACTER]
+					[ID]Oozo
+					[BEGIN STATE]
+						[CONDITION STRING]In Room{Cam 1}
+						[CONDITION BOOL]Disabled{false}
+					[END STATE]
+					[BEGIN BEHAVIORS]
+						[BEHAVIOR]END TURN IF{Disabled}
+						[BEHAVIOR]TRIES TO MOVE EVERY{2000}
+						[BEHAVIOR]MOVE CHANCE{100}
+						[BEHAVIOR]MOVES IN A LINE{Cam 1,Cam 5,Cam 6,Cam 7,Right Door,Office}
+						[BEHAVIOR]MOVE BLOCKED BY ROOM STATE{Closed}
+						[BEHAVIOR]MOVE SUCCEEDS IF NOT BLOCKED
+						[BEHAVIOR]RETURNS TO ROOM WHEN BLOCKED{Cam 1}
+						[BEHAVIOR]ATTACKS PLAYER WHEN IN{Office}
+					[END BEHAVIORS]
+					[BEGIN TEXTURE BANKS]
+						[BEGIN TEXTURE BANK]
+							[RENDERING LEVEL]Oozo
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\characters\oozo\at_cam_1.png
+								[BEGIN BANKED TEXTURE BEHAVIORS]
+									[BEHAVIOR]CHECK STATE{(Character:Oozo:In Room)=Cam 1}
+								[END BANKED TEXTURE BEHAVIORS]
+							[END TEXTURE]
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\characters\oozo\at_cam_5.png
+								[BEGIN BANKED TEXTURE BEHAVIORS]
+									[BEHAVIOR]CHECK STATE{(Character:Oozo:In Room)=Cam 5}
+								[END BANKED TEXTURE BEHAVIORS]
+							[END TEXTURE]
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\characters\oozo\at_cam_6.png
+								[BEGIN BANKED TEXTURE BEHAVIORS]
+									[BEHAVIOR]CHECK STATE{(Character:Oozo:In Room)=Cam 6}
+								[END BANKED TEXTURE BEHAVIORS]
+							[END TEXTURE]
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\characters\oozo\at_right_door.png
+								[BEGIN BANKED TEXTURE BEHAVIORS]
+									[BEHAVIOR]CHECK STATE{(Character:Oozo:In Room)=Right Door}
+									[BEHAVIOR]CHECK STATE{(Room:Right Door:Lit)}
+								[END BANKED TEXTURE BEHAVIORS]
+							[END TEXTURE]
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\characters\oozo\attacking_badly.png
+								[BEGIN BANKED TEXTURE BEHAVIORS]
+									[BEHAVIOR]CHECK STATE{(Character:Oozo:In Room)=Office}
+								[END BANKED TEXTURE BEHAVIORS]
+							[END TEXTURE]
+						[END TEXTURE BANK]
+					[END TEXTURE BANKS]
+				[END CHARACTER]
+			[END CHARACTERS]
+			[BEGIN ROOMS]
+				[BEGIN ROOM]
+					[ID]Office
+					[IS OFFICE]yes
+					[BEGIN STATE]
+						[CONDITION STRING]Test Condition Dog{dog}
+						[CONDITION STRING]Test Condition Cat{cat}
+						[CONDITION STRING]Debug Mode{Overlay}
+					[END STATE]
+					[BEGIN TEXTURE BANKS]
+						[BEGIN TEXTURE BANK]
+							[RENDERING LEVEL]Background
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\office\mainView.png
+							[END TEXTURE]
+						[END TEXTURE BANK]
+						[BEGIN TEXTURE BANK]
+							[RENDERING LEVEL]Foreground
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\overlays\debug_mode.png
+								[BEGIN BANKED TEXTURE BEHAVIORS]
+									[BEHAVIOR]CHECK STATE{(Room:Office:Debug Mode)=Overlay}
+								[END BANKED TEXTURE BEHAVIORS]
+							[END TEXTURE]
+						[END TEXTURE BANK]
+						[BEGIN TEXTURE BANK]
+							[RENDERING LEVEL]Max Debug
+							[IS PROGRESSING]yes
+							[BEGIN PROGRESSING BEHAVIORS]
+								[BEHAVIOR]PER TIME{100}->PROGRESS{SnawTest/progressTest}
+								[BEHAVIOR]PER TIME{1000}->PROGRESS{SnawTest/progressTest2}
+							[END PROGRESSING BEHAVIORS]
+							[BEGIN PROGRESSING TEXTURES]
+								[AUTOPROGRESSING TEXTURE]SnawTest/progressTest
+								[AUTOPROGRESSING TEXTURE]SnawTest/progressTest2
+							[END PROGRESSING TEXTURES]
+						[END TEXTURE BANK]
+					[END TEXTURE BANKS]
+					[BEGIN UI ELEMENTS]
+						[UI ELEMENT]Main Office Buttons
+						[UI ELEMENT]Power Show
+					[END UI ELEMENTS]
+				[END ROOM]
+				[BEGIN ROOM]
+					[ID]Left Door
+					[BEGIN STATE]
+						[CONDITION BOOL]Lit{false}
+						[CONDITION BOOL]Closed{false}
+					[END STATE]
+					[BEGIN TEXTURE BANKS]
+						[BEGIN TEXTURE BANK]
+							[RENDERING LEVEL]Background
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\office\left_door_base.png
+							[END TEXTURE]
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\office\left_door_lit.png
+								[BEGIN BANKED TEXTURE BEHAVIORS]
+									[BEHAVIOR]CHECK STATE{(Room:Left Door:Lit)}
+								[END BANKED TEXTURE BEHAVIORS]
+							[END TEXTURE]
+						[END TEXTURE BANK]
+						[BEGIN TEXTURE BANK]
+							[RENDERING LEVEL]Foreground
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\office\left_door_closed.png
+								[BEGIN BANKED TEXTURE BEHAVIORS]
+									[BEHAVIOR]CHECK STATE{(Room:Left Door:Closed)}
+								[END BANKED TEXTURE BEHAVIORS]
+							[END TEXTURE]
+						[END TEXTURE BANK]
+					[END TEXTURE BANKS]
+				[END ROOM]
+				[BEGIN ROOM]
+					[ID]Right Door
+					[BEGIN STATE]
+						[CONDITION BOOL]Lit{false}
+						[CONDITION BOOL]Closed{false}
+					[END STATE]
+					[BEGIN TEXTURE BANKS]
+						[BEGIN TEXTURE BANK]
+							[RENDERING LEVEL]Background
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\office\right_door_base.png
+							[END TEXTURE]
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\office\right_door_lit.png
+								[BEGIN BANKED TEXTURE BEHAVIORS]
+									[BEHAVIOR]CHECK STATE{(Room:Right Door:Lit)}
+								[END BANKED TEXTURE BEHAVIORS]
+							[END TEXTURE]
+						[END TEXTURE BANK]
+						[BEGIN TEXTURE BANK]
+							[RENDERING LEVEL]Foreground
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\office\right_door_closed.png
+								[BEGIN BANKED TEXTURE BEHAVIORS]
+									[BEHAVIOR]CHECK STATE{(Room:Right Door:Closed)}
+								[END BANKED TEXTURE BEHAVIORS]
+							[END TEXTURE]
+						[END TEXTURE BANK]
+					[END TEXTURE BANKS]
+				[END ROOM]
+				[BEGIN ROOM]
+					[ID]Cam 1
+					[BEGIN TEXTURE BANKS]
+						[BEGIN TEXTURE BANK]
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\camviews\camt-1.png
+							[END TEXTURE]
+						[END TEXTURE BANK]
+					[END TEXTURE BANKS]
+					[BEGIN UI ELEMENTS]
+						[UI ELEMENT]Camera Selection
+					[END UI ELEMENTS]
+				[END ROOM]
+				[BEGIN ROOM]
+					[ID]Cam 2
+					[BEGIN TEXTURE BANKS]
+						[BEGIN TEXTURE BANK]
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\camviews\camt-2.png
+							[END TEXTURE]
+						[END TEXTURE BANK]
+					[END TEXTURE BANKS]
+					[BEGIN UI ELEMENTS]
+						[UI ELEMENT]Camera Selection
+					[END UI ELEMENTS]
+					[END ROOM]
+				[BEGIN ROOM]
+					[ID]Cam 3
+					[BEGIN TEXTURE BANKS]
+						[BEGIN TEXTURE BANK]
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\camviews\camt-3.png
+							[END TEXTURE]
+						[END TEXTURE BANK]
+					[END TEXTURE BANKS]
+					[BEGIN UI ELEMENTS]
+						[UI ELEMENT]Camera Selection
+					[END UI ELEMENTS]
+					[END ROOM]
+				[BEGIN ROOM]
+					[ID]Cam 4
+					[BEGIN TEXTURE BANKS]
+						[BEGIN TEXTURE BANK]
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\camviews\camt-4.png
+							[END TEXTURE]
+						[END TEXTURE BANK]
+					[END TEXTURE BANKS]
+					[BEGIN UI ELEMENTS]
+						[UI ELEMENT]Camera Selection
+					[END UI ELEMENTS]
+					[END ROOM]
+				[BEGIN ROOM]
+					[ID]Cam 5
+					[BEGIN TEXTURE BANKS]
+						[BEGIN TEXTURE BANK]
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\camviews\camt-5.png
+							[END TEXTURE]
+						[END TEXTURE BANK]
+					[END TEXTURE BANKS]
+					[BEGIN UI ELEMENTS]
+						[UI ELEMENT]Camera Selection
+					[END UI ELEMENTS]
+				[END ROOM]
+				[BEGIN ROOM]
+					[ID]Cam 6
+					[BEGIN TEXTURE BANKS]
+						[BEGIN TEXTURE BANK]
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\camviews\camt-6.png
+							[END TEXTURE]
+						[END TEXTURE BANK]
+					[END TEXTURE BANKS]
+					[BEGIN UI ELEMENTS]
+						[UI ELEMENT]Camera Selection
+					[END UI ELEMENTS]
+				[END ROOM]
+				[BEGIN ROOM]
+					[ID]Cam 7
+					[BEGIN TEXTURE BANKS]
+						[BEGIN TEXTURE BANK]
+							[BEGIN TEXTURE]
+								[TEXTURE IMAGE]SnawTest\camviews\camt-7.png
+							[END TEXTURE]
+						[END TEXTURE BANK]
+					[END TEXTURE BANKS]
+					[BEGIN UI ELEMENTS]
+						[UI ELEMENT]Camera Selection
+					[END UI ELEMENTS]
+				[END ROOM]
+			[END ROOMS]
+			[BEGIN PARENT ROOM RELATIONSHIPS]
+				[BEGIN PARENT ROOM RELATIONSHIP]
+					[PARENT ROOM]Office
+					[CHILD ROOM]Left Door
+					[PLACEMENT TEXTURE]SnawTest\office\overlay_door_left.png
+				[END PARENT ROOM RELATIONSHIP]
+				[BEGIN PARENT ROOM RELATIONSHIP]
+					[PARENT ROOM]Office
+					[CHILD ROOM]Right Door
+					[PLACEMENT TEXTURE]SnawTest\office\overlay_door_right.png
+				[END PARENT ROOM RELATIONSHIP]
+			[END PARENT ROOM RELATIONSHIPS]
+			[BEGIN BUTTONS]
+				[BEGIN BUTTON]
+					[ID]DoorSwitchLeft
+					[BEGIN TEXTURE BANK]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\office\door_left.png
+						[END TEXTURE]
+					[END TEXTURE BANK]
+					[BEGIN CLICK AREAS]
+						[BEGIN CLICK AREA]
+							[BEGIN TEXTURE BANK]
+								[BEGIN TEXTURE]
+									[TEXTURE IMAGE]SnawTest\office\door_left.png
+								[END TEXTURE]
+							[END TEXTURE BANK]
+							[BEGIN CLICK BEHAVIORS]
+								[BEHAVIOR]TOGGLE ROOM STATE{Left Door:Closed}
+							[END CLICK BEHAVIORS]
+						[END CLICK AREA]
+					[END CLICK AREAS]
+				[END BUTTON]
+				[BEGIN BUTTON]
+					[ID]DoorSwitchRight
+					[BEGIN TEXTURE BANK]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\office\door_right.png
+						[END TEXTURE]
+					[END TEXTURE BANK]
+					[BEGIN CLICK AREAS]
+						[BEGIN CLICK AREA]
+							[BEGIN TEXTURE BANK]
+								[BEGIN TEXTURE]
+									[TEXTURE IMAGE]SnawTest\office\door_right.png
+								[END TEXTURE]
+							[END TEXTURE BANK]
+							[BEGIN CLICK BEHAVIORS]
+								[BEHAVIOR]TOGGLE ROOM STATE{Right Door:Closed}
+							[END CLICK BEHAVIORS]
+						[END CLICK AREA]
+					[END CLICK AREAS]
+				[END BUTTON]
+				[BEGIN BUTTON]
+					[ID]LightSwitchLeft
+					[BEGIN TEXTURE BANK]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\office\light_left.png
+						[END TEXTURE]
+					[END TEXTURE BANK]
+					[BEGIN CLICK AREAS]
+						[BEGIN CLICK AREA]
+							[BEGIN TEXTURE BANK]
+								[BEGIN TEXTURE]
+									[TEXTURE IMAGE]SnawTest\office\light_left.png
+								[END TEXTURE]
+							[END TEXTURE BANK]
+							[BEGIN CLICK BEHAVIORS]
+								[BEHAVIOR]TOGGLE ROOM STATE{Left Door:Lit}
+							[END CLICK BEHAVIORS]
+						[END CLICK AREA]
+					[END CLICK AREAS]
+				[END BUTTON]
+				[BEGIN BUTTON]
+					[ID]LightSwitchRight
+					[BEGIN TEXTURE BANK]
+						[RENDERING LEVEL]Buttons
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\office\light_right.png
+						[END TEXTURE]
+					[END TEXTURE BANK]
+					[BEGIN CLICK AREAS]
+						[BEGIN CLICK AREA]
+							[BEGIN TEXTURE BANK]
+								[BEGIN TEXTURE]
+									[TEXTURE IMAGE]SnawTest\office\light_right.png
+								[END TEXTURE]
+							[END TEXTURE BANK]
+							[BEGIN CLICK BEHAVIORS]
+								[BEHAVIOR]TOGGLE ROOM STATE{Right Door:Lit}
+							[END CLICK BEHAVIORS]
+						[END CLICK AREA]
+					[END CLICK AREAS]
+				[END BUTTON]
+				[BEGIN BUTTON]
+					[ID]Return To Main Menu Button
+					[BEGIN CLICK AREAS]
+						[BEGIN CLICK AREA]
+							[BEGIN TEXTURE BANK]
+								[BEGIN TEXTURE]
+									[TEXTURE IMAGE]SnawTest\menu\lose_screen_button.png
+								[END TEXTURE]
+							[END TEXTURE BANK]
+							[BEGIN CLICK BEHAVIORS]
+								[BEHAVIOR]SET MENU{Main Menu}
+							[END CLICK BEHAVIORS]
+						[END CLICK AREA]
+					[END CLICK AREAS]
+				[END BUTTON]
+				[BEGIN BUTTON]
+					[ID]Main Menu Buttons
+					[BEGIN CLICK AREAS]
+						[BEGIN CLICK AREA]
+							[BEGIN TEXTURE BANK]
+								[BEGIN TEXTURE]
+									[TEXTURE IMAGE]SnawTest\menu\main menu\menu_button_1.png
+								[END TEXTURE]
+							[END TEXTURE BANK]
+							[BEGIN CLICK BEHAVIORS]
+								[BEHAVIOR]START LEVEL{Level 1}
+							[END CLICK BEHAVIORS]
+						[END CLICK AREA]
+						[BEGIN CLICK AREA]
+							[BEGIN TEXTURE BANK]
+								[BEGIN TEXTURE]
+									[TEXTURE IMAGE]SnawTest\menu\main menu\menu_button_2.png
+								[END TEXTURE]
+							[END TEXTURE BANK]
+							[BEGIN CLICK BEHAVIORS]
+								[BEHAVIOR]START LEVEL{Level 2}
+							[END CLICK BEHAVIORS]
+						[END CLICK AREA]
+						[BEGIN CLICK AREA]
+							[BEGIN TEXTURE BANK]
+								[BEGIN TEXTURE]
+									[TEXTURE IMAGE]SnawTest\menu\main menu\menu_button_3.png
+								[END TEXTURE]
+							[END TEXTURE BANK]
+							[BEGIN CLICK BEHAVIORS]
+								[BEHAVIOR]START LEVEL{Level 3}
+							[END CLICK BEHAVIORS]
+						[END CLICK AREA]
+						[BEGIN CLICK AREA]
+							[BEGIN TEXTURE BANK]
+								[BEGIN TEXTURE]
+									[TEXTURE IMAGE]SnawTest\menu\main menu\menu_button_4.png
+								[END TEXTURE]
+							[END TEXTURE BANK]
+							[BEGIN CLICK BEHAVIORS]
+								[BEHAVIOR]START LEVEL{Level 4}
+							[END CLICK BEHAVIORS]
+						[END CLICK AREA]
+						[BEGIN CLICK AREA]
+							[BEGIN TEXTURE BANK]
+								[BEGIN TEXTURE]
+									[TEXTURE IMAGE]SnawTest\menu\main menu\menu_button_5.png
+								[END TEXTURE]
+							[END TEXTURE BANK]
+							[BEGIN CLICK BEHAVIORS]
+								[BEHAVIOR]START LEVEL{Level 5}
+							[END CLICK BEHAVIORS]
+						[END CLICK AREA]
+						[BEGIN CLICK AREA]
+							[BEGIN TEXTURE BANK]
+								[BEGIN TEXTURE]
+									[TEXTURE IMAGE]SnawTest\menu\main menu\menu_button_6.png
+								[END TEXTURE]
+							[END TEXTURE BANK]
+							[BEGIN CLICK BEHAVIORS]
+								[BEHAVIOR]QUIT
+							[END CLICK BEHAVIORS]
+						[END CLICK AREA]
+					[END CLICK AREAS]
+				[END BUTTON]
+				[BEGIN BUTTON]
+					[ID]CameraPicker
+					[BEGIN CLICK AREAS]
+						[BEGIN CLICK AREA]
+							[BEGIN TEXTURE BANK]
+								[BEGIN TEXTURE]
+									[TEXTURE IMAGE]SnawTest\cams\cams_buttons_1.png
+								[END TEXTURE]
+							[END TEXTURE BANK]
+							[BEGIN CLICK BEHAVIORS]
+								[BEHAVIOR]SET CAM{Cam 1}
+							[END CLICK BEHAVIORS]
+						[END CLICK AREA]
+						[BEGIN CLICK AREA]
+							[BEGIN TEXTURE BANK]
+								[BEGIN TEXTURE]
+									[TEXTURE IMAGE]SnawTest\cams\cams_buttons_2.png
+								[END TEXTURE]
+							[END TEXTURE BANK]
+							[BEGIN CLICK BEHAVIORS]
+								[BEHAVIOR]SET CAM{Cam 2}
+							[END CLICK BEHAVIORS]
+						[END CLICK AREA]
+						[BEGIN CLICK AREA]
+							[BEGIN TEXTURE BANK]
+								[BEGIN TEXTURE]
+									[TEXTURE IMAGE]SnawTest\cams\cams_buttons_3.png
+								[END TEXTURE]
+							[END TEXTURE BANK]
+							[BEGIN CLICK BEHAVIORS]
+								[BEHAVIOR]SET CAM{Cam 3}
+							[END CLICK BEHAVIORS]
+						[END CLICK AREA]
+						[BEGIN CLICK AREA]
+							[BEGIN TEXTURE BANK]
+								[BEGIN TEXTURE]
+									[TEXTURE IMAGE]SnawTest\cams\cams_buttons_4.png
+								[END TEXTURE]
+							[END TEXTURE BANK]
+							[BEGIN CLICK BEHAVIORS]
+								[BEHAVIOR]SET CAM{Cam 4}
+							[END CLICK BEHAVIORS]
+						[END CLICK AREA]
+						[BEGIN CLICK AREA]
+							[BEGIN TEXTURE BANK]
+								[BEGIN TEXTURE]
+									[TEXTURE IMAGE]SnawTest\cams\cams_buttons_5.png
+								[END TEXTURE]
+							[END TEXTURE BANK]
+							[BEGIN CLICK BEHAVIORS]
+								[BEHAVIOR]SET CAM{Cam 5}
+							[END CLICK BEHAVIORS]
+						[END CLICK AREA]
+						[BEGIN CLICK AREA]
+							[BEGIN TEXTURE BANK]
+								[BEGIN TEXTURE]
+									[TEXTURE IMAGE]SnawTest\cams\cams_buttons_6.png
+								[END TEXTURE]
+							[END TEXTURE BANK]
+							[BEGIN CLICK BEHAVIORS]
+								[BEHAVIOR]SET CAM{Cam 6}
+							[END CLICK BEHAVIORS]
+						[END CLICK AREA]
+						[BEGIN CLICK AREA]
+							[BEGIN TEXTURE BANK]
+								[BEGIN TEXTURE]
+									[TEXTURE IMAGE]SnawTest\cams\cams_buttons_7.png
+								[END TEXTURE]
+							[END TEXTURE BANK]
+							[BEGIN CLICK BEHAVIORS]
+								[BEHAVIOR]SET CAM{Cam 7}
+							[END CLICK BEHAVIORS]
+						[END CLICK AREA]
+						[BEGIN CLICK AREA]
+							[BEGIN TEXTURE BANK]
+								[BEGIN TEXTURE]
+									[TEXTURE IMAGE]SnawTest\cams\cams_buttons_o.png
+								[END TEXTURE]
+							[END TEXTURE BANK]
+							[BEGIN CLICK BEHAVIORS]
+								[BEHAVIOR]SET CAM{Office}
+							[END CLICK BEHAVIORS]
+						[END CLICK AREA]
+					[END CLICK AREAS]
+					[BEGIN TEXTURE BANK]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\cams\cams_base.png
+						[END TEXTURE]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\cams\cams_buttons_1.png
+							[BEGIN BANKED TEXTURE BEHAVIORS]
+								[BEHAVIOR]WHEN ROOM IS ACTIVE{1}
+							[END BANKED TEXTURE BEHAVIORS]
+						[END TEXTURE]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\cams\cams_buttons_2.png
+							[BEGIN BANKED TEXTURE BEHAVIORS]
+								[BEHAVIOR]WHEN ROOM IS ACTIVE{2}
+							[END BANKED TEXTURE BEHAVIORS]
+						[END TEXTURE]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\cams\cams_buttons_3.png
+							[BEGIN BANKED TEXTURE BEHAVIORS]
+								[BEHAVIOR]WHEN ROOM IS ACTIVE{3}
+							[END BANKED TEXTURE BEHAVIORS]
+						[END TEXTURE]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\cams\cams_buttons_4.png
+							[BEGIN BANKED TEXTURE BEHAVIORS]
+								[BEHAVIOR]WHEN ROOM IS ACTIVE{4}
+							[END BANKED TEXTURE BEHAVIORS]
+						[END TEXTURE]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\cams\cams_buttons_5.png
+							[BEGIN BANKED TEXTURE BEHAVIORS]
+								[BEHAVIOR]WHEN ROOM IS ACTIVE{5}
+							[END BANKED TEXTURE BEHAVIORS]
+						[END TEXTURE]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\cams\cams_buttons_6.png
+							[BEGIN BANKED TEXTURE BEHAVIORS]
+								[BEHAVIOR]WHEN ROOM IS ACTIVE{6}
+							[END BANKED TEXTURE BEHAVIORS]
+						[END TEXTURE]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\cams\cams_buttons_7.png
+							[BEGIN BANKED TEXTURE BEHAVIORS]
+								[BEHAVIOR]WHEN ROOM IS ACTIVE{7}
+							[END BANKED TEXTURE BEHAVIORS]
+						[END TEXTURE]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\cams\cams_buttons_o.png
+							[BEGIN BANKED TEXTURE BEHAVIORS]
+								[BEHAVIOR]WHEN ROOM IS ACTIVE{Office}
+							[END BANKED TEXTURE BEHAVIORS]
+						[END TEXTURE]
+					[END TEXTURE BANK]
+				[END BUTTON]
+			[END BUTTONS]
+			[BEGIN UI ELEMENTS]
+				[BEGIN UI ELEMENT]
+					[ID]Power Show
+					[BEGIN TEXTURE BANK]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\overlays\power_bar_blank.png
+						[END TEXTURE]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\overlays\power_bar_down_1.png
+							[BEGIN BANKED TEXTURE BEHAVIORS]
+								[BEHAVIOR]CHECK INT STATE{(Map:Main Map:Power)<900}
+							[END TEXTURE BEHAVIORS]
+						[END TEXTURE]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\overlays\power_bar_down_2.png
+							[BEGIN BANKED TEXTURE BEHAVIORS]
+								[BEHAVIOR]CHECK INT STATE{(Map:Main Map:Power)<700}
+							[END TEXTURE BEHAVIORS]
+						[END TEXTURE]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\overlays\power_bar_down_3.png
+							[BEGIN BANKED TEXTURE BEHAVIORS]
+								[BEHAVIOR]CHECK INT STATE{(Map:Main Map:Power)<500}
+							[END TEXTURE BEHAVIORS]
+						[END TEXTURE]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\overlays\power_bar_down_4.png
+							[BEGIN BANKED TEXTURE BEHAVIORS]
+								[BEHAVIOR]CHECK INT STATE{(Map:Main Map:Power)<300}
+							[END TEXTURE BEHAVIORS]
+						[END TEXTURE]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\overlays\power_bar_down_5.png
+							[BEGIN BANKED TEXTURE BEHAVIORS]
+								[BEHAVIOR]CHECK INT STATE{(Map:Main Map:Power)<100}
+							[END TEXTURE BEHAVIORS]
+						[END TEXTURE]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\overlays\power_bar_down_6.png
+							[BEGIN BANKED TEXTURE BEHAVIORS]
+								[BEHAVIOR]CHECK INT STATE{(Map:Main Map:Power)<50}
+							[END TEXTURE BEHAVIORS]
+						[END TEXTURE]
+					[END TEXTURE BANK]
+				[END UI ELEMENT]
+				[BEGIN UI ELEMENT]
+					[ID]Main Office Buttons
+					[BEGIN BUTTON OVERLAYS]
+						[BEGIN BUTTON OVERLAY]
+							[BUTTON]CameraPicker
+							[PLACEMENT TEXTURE]SnawTest\office\overlay_cams.png
+						[END BUTTON OVERLAY]
+						[BEGIN BUTTON OVERLAY]
+							[BUTTON]LightSwitchLeft
+							[RENDERING LEVEL]Background
+							[PLACEMENT TEXTURE]SnawTest\office\overlay_light_left.png
+						[END BUTTON OVERLAY]
+						[BEGIN BUTTON OVERLAY]
+							[BUTTON]DoorSwitchLeft
+							[RENDERING LEVEL]Background
+							[PLACEMENT TEXTURE]SnawTest\office\overlay_doorswitch_left.png
+						[END BUTTON OVERLAY]
+						[BEGIN BUTTON OVERLAY]
+							[BUTTON]LightSwitchRight
+							[RENDERING LEVEL]Background
+							[PLACEMENT TEXTURE]SnawTest\office\overlay_light_right.png
+						[END BUTTON OVERLAY]
+						[BEGIN BUTTON OVERLAY]
+							[BUTTON]DoorSwitchRight
+							[RENDERING LEVEL]Background
+							[PLACEMENT TEXTURE]SnawTest\office\overlay_doorswitch_right.png
+						[END BUTTON OVERLAY]
+					[END BUTTON OVERLAYS]
+				[END UI ELEMENT]
+				[BEGIN UI ELEMENT]
+					[ID]Camera Selection
+					[BEGIN TEXTURE BANK]
+						[BEGIN TEXTURE]
+							[TEXTURE IMAGE]SnawTest\camviews\overlay_clear.png
+						[END TEXTURE]
+					[END TEXTURE BANK]
+					[BEGIN BUTTON OVERLAYS]
+						[BEGIN BUTTON OVERLAY]
+							[BUTTON]CameraPicker
+							[PLACEMENT TEXTURE]SnawTest\camviews\overlay_buttons.png
+						[END BUTTON OVERLAY]
+					[END BUTTON OVERLAYS]
+				[END UI ELEMENT]
+			[END UI ELEMENTS]
+		[END GAME MAP]
+	[END GAME MAPS]
+[END FILE]
